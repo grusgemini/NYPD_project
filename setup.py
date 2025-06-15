@@ -8,6 +8,6 @@ setup(
     url='https://github.com/grusgemini/NYPD_project/',
     author='Kacper Żurawski',
     install_requires=[
-        'pandas', 'numpy', 'openpyxl'
+        'pandas', 'numpy', 'openpyxl', 'xlrd'
     ])
 
