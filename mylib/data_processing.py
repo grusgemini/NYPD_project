@@ -27,16 +27,6 @@ def lower_the_case(data: pd.DataFrame, column: str) -> pd.DataFrame:
     return data
 
 
-def rename_column(data: pd.DataFrame, old_name: str, new_name: str) -> pd.DataFrame:
-    """Renames given column
-    :param data: Input data frame
-    :param old_name: Old column name
-    :param new_name: New column name
-    """
-    data = data.rename(columns={'old_name': 'new_name'})
-    return data
-
-
 def drop_columns(data: pd.DataFrame, columns: list) -> pd.DataFrame:
     """Deletes given columns form a data frame.
     :param data: Input dataframe
@@ -47,13 +37,35 @@ def drop_columns(data: pd.DataFrame, columns: list) -> pd.DataFrame:
     return data
 
 
-def drop_rows(data: pd.DataFrame, rows: list) -> pd.DataFrame:
+def drop_rows_by_index(data: pd.DataFrame, rows: list) -> pd.DataFrame:
     """Deletes given rows form a data frame.
     :param data: Input dataframe
     :param rows: List of numbers of rows to drop"""
     data = data.copy()
     rows = list(map(lambda x: x -1, rows))
     data = data.drop(index = data.iloc[rows].index)
+    return data
+
+
+def drop_rows_by_suffix(data: pd.DataFrame, column: str, suffix: str) -> pd.DataFrame:
+    """Deletes rows where entries in a given column end with given suffixes
+    :param data: Input dataframe
+    :param column: Column where we look for entries with suffix
+    :param suffixes: Suffix 
+    """
+    data = data.copy()
+    data = data[~data[column].str.endswith(suffix)]
+    return data
+
+
+def drop_rows_by_prefix(data: pd.DataFrame, column: str, prefix: str) -> pd.DataFrame:
+    """Deletes rows where entries in a given column start with given prefix
+    :param data: Input dataframe
+    :param column: Column where we look for entries with prefix
+    :param prefix: Prexif 
+    """
+    data = data.copy()
+    data = data[~data[column].str.startswith(prefix)]
     return data
 
 
@@ -129,7 +141,22 @@ def count_unique(data: pd.DataFrame, column: str) -> pd.DataFrame:
     return counter
 
 
+def custom_merge(data1: pd.DataFrame, data2: pd.DataFrame, column1: str, column2: str) -> pd.DataFrame:
+    """Merges two DataFrames using different column names.
+    :param data1: Input data frame
+    :param data2: Second input data frame
+    :param column1: Column name to merge on in data1
+    :param column2: Column name to merge on in data2
+    """
+    return pd.merge(data1, data2, left_on=column1, right_on=column2, how='inner')
 
 
-
+def save_results(title: str, value: float, filename: str):
+    """Creating a table and saving results to csv file
+    :param title: Name of value we want to save
+    :param value: The value
+    :param filename: Path to file where result is going to be saved
+    """
+    table = pd.DataFrame({title: [value]})
+    table.to_csv(filename, index=False)
 
