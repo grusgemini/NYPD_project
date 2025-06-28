@@ -1,2 +1,6 @@
-Correlation between city population and number of alcohol selling companies
-0.8990307192224777
+Correlation between number of all fire incidents and population: 	0.6344737950554151
+Correlation between number of actual fire incidents and population: 	0.658100839025227
+Correlation between number of false reports of fire incidents and population: 	0.7393043311648279
+Correlation between number of all fire incidents and area: 	0.06042649833513741
+Correlation between number of actual fire incidents and area: 	0.10880706346368903
+Correlation between number of false reports of fire incidents and area: 	0.019145157853112174
