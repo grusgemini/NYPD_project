@@ -1,7 +1,7 @@
 import argparse
 import os
 import pandas as pd 
-from mylib import data_processing as dp
+from fapa_analysis_lib import data_processing as dp
 
 
 def main():
