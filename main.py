@@ -2,6 +2,7 @@ import argparse
 import os
 import pandas as pd
 from fapa_analysis_lib import data_processing as dp
+import cProfile
 
 
 def main():
@@ -95,6 +96,7 @@ def main():
     )
 
     # FIRE INCIDENTS VS ALCOHOL
+
     fire_vs_alcohol = dp.custom_merge(
         fire_incidents_data, alcohol_data, "Gmina", "Miejscowość"
     )
@@ -173,4 +175,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    cProfile.run('main()')
